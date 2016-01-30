@@ -6,9 +6,11 @@ import {default as LobbyContainer} from '../../../containers/lobby/lobby-contain
 export default React.createClass({
   render() {
     return (
-      <div>
-        <Title />
-        <LobbyContainer />
+      <div className="lobby__lobby">
+        <div>
+          <Title />
+          <LobbyContainer />
+        </div>
       </div>
     );
   }
