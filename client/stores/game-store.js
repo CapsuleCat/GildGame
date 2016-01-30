@@ -106,7 +106,9 @@ const GameStore = Reflux.createStore({
 
       if ( typeof game !== 'undefined' &&
            game !== null ) {
-        // TODO
+        if (game.player1Ready && game.player2Ready) {
+          this._readyToShowMonsters = true;
+        }
 
         // Basically checking on the other player
       }
