@@ -1,0 +1,13 @@
+.lobby__lobby-header {
+  clear:both;
+}
+.lobby__lobby-header--usernameLabel {
+  float:left;
+}
+.lobby__lobby-header--usernameInput {
+  float:left;
+  margin-left: 20px;
+}
+.lobby__lobby-header--btn {
+  float:right;
+}
