@@ -1,0 +1,112 @@
+import React from 'react';
+import Reflux from 'reflux';
+
+const LobbyActions = Reflux.createActions([
+  'create',
+  'join',
+  'leave'
+]);
+
+const LobbyStore = Reflux.createStore({
+  listenables: [LobbyActions],
+
+  init() {
+    this._lobbies = [];
+    this._lobby = {
+      gameId: null,
+      userName: '',
+      otherUserName: ''
+    };
+  
+    this._track();
+
+    this.trigger(this.getInitialState());
+  },
+
+  onCreate(username) {
+    const id = Games.insert({
+      player1: username
+    });
+
+    this._lobby.userName = username;
+    this._lobby.gameId = id;
+
+    this.trigger(this.getInitialState());
+  },
+
+  onJoin(gameId, username) {
+    let game = Games.findOne({
+      _id: gameId
+    });
+
+    Games.update({
+      _id: gameId
+    }, {
+      player2: username
+    });
+
+    this._lobby.userName = username;
+    this._lobby.otherUserName = game.player1;
+    this._lobby.gameId = id;
+
+    _track();
+  },
+
+  onLeave(gameId) {
+    // TODO
+  },
+
+  getInitialState() {
+    let calculatedState = this._calculateState(
+        this._lobby
+    );
+
+    return Object.assign(
+        {},
+        this._lobby,
+        calculatedState,
+        {
+          lobbies: this._lobbies
+        }
+    );
+  },
+
+  _track() {
+    Tracker.autorun(Meteor.bindEnvironment((computation) => {
+      let games = Games.find({
+        player2: null
+      }).fetch();
+
+      this._lobbies = games;
+
+      let game = Games.findOne({
+        _id: this._lobby.gameId
+      });
+
+      if ( typeof game !== 'undefined' &&
+           game !== null ) {
+        /*
+         * username is not necessarily player1
+         * otherUserName is not necessarily player2
+         */
+        if ( this._lobby.userName !== game.player1 ) {
+          this._lobby.otherUserName = game.player1;
+        } else {
+          this._lobby.otherUserName = game.player2;
+        }
+      }
+      
+      // TODO any other data we need to sync
+      this.trigger(this.getInitialState());
+    }));
+  },
+
+  _calculateState(state) {
+    return {
+      isInLobby: (state.gameId !== null),
+      hasOtherPlayer: (state.otherUserName !== '')
+    }
+  }
+})
+
+export default { LobbyActions, LobbyStore };
