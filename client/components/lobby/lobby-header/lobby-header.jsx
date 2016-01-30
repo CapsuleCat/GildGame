@@ -12,7 +12,7 @@ export default React.createClass({
 
     const username = this.refs.username.value;
 
-    let gameId = LobbyActions.create(username, (gameId) => {
+    LobbyActions.create(username, (gameId) => {
       GameActions.setGame(
         gameId,
         1
