@@ -43,7 +43,7 @@
     "arrow-spacing": 2,
     "block-scoped-var": 0,
     "brace-style": [2, "1tbs", {"allowSingleLine": true}],
-    "callback-return": 2,
+    "callback-return": 0,
     "camelcase": [2, {"properties": "always"}],
     "comma-dangle": 0,
     "comma-spacing": 0,

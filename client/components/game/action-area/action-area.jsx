@@ -15,12 +15,12 @@ export default React.createClass({
     let summonButton = '';
     let arena = '';
 
-    if (this.props.readyToSummon &&
-        !this.props.readyToRoShamBo) {
+    if (this.props.readyToShowMonsters) {
+      arena = <Arena />;
+      summonRing = '';
+    } else if (this.props.readyToSummon && !this.props.readyToRoShamBo) {
       summonButton = <SummonButton />;
     }
-
-    // TODO
 
     return (
       <div>

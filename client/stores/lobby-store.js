@@ -24,13 +24,15 @@ const LobbyStore = Reflux.createStore({
     this.trigger(this.getInitialState());
   },
 
-  onCreate(username) {
+  onCreate(username, callback) {
     const id = Games.insert({
       player1: username
     });
 
     this._lobby.userName = username;
     this._lobby.gameId = id;
+
+    callback(id);
 
     this.trigger(this.getInitialState());
   },
