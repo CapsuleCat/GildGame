@@ -5,7 +5,9 @@ import {default as GameContainer} from '../../../containers/game/game-container.
 export default React.createClass({
   render() {
     return (
-      <GameContainer />
+      <div className="game__game">
+        <GameContainer />
+      </div>
     );
   }
 });

@@ -3,7 +3,7 @@ import React from 'react';
 export default React.createClass({
   render() {
     return (
-      <div>
+      <div className="game__win-cnt">
         <span>Wins: {this.props.winCount}</span>
       </div>
     );

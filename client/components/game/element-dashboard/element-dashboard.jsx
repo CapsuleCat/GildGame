@@ -5,7 +5,7 @@ import {default as Element} from '../element/element.jsx';
 export default React.createClass({
   render() {
     return (
-        <div>
+        <div className="game__dashboard">
           {this.props.elements.map((element, i) => {
             return <Element
                 key={i}

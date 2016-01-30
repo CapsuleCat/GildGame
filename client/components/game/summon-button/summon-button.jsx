@@ -11,7 +11,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="game__summon-btn">
         <button onClick={this.handleClick}>Summon</button>
       </div>
     );
