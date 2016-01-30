@@ -11,13 +11,13 @@ export default React.createClass({
   },
 
   render() {
-    let summonRing = <SummoningRing />
+    let summonRing = <SummoningRing />;
     let summonButton = '';
     let arena = '';
 
     if (this.props.readyToSummon &&
         !this.props.readyToRoShamBo) {
-      summonButton = <SummonButton />
+      summonButton = <SummonButton />;
     }
 
     // TODO

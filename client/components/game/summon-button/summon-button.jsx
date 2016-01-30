@@ -5,7 +5,7 @@ import {GameActions} from '../../../stores/game-store';
 export default React.createClass({
   handleClick(e) {
     e.preventDefault();
-    
+
     GameActions.summon();
   },
 

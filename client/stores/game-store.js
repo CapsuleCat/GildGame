@@ -1,4 +1,4 @@
-/* global elements */
+/* global elements, Games */
 import Reflux from 'reflux';
 
 import {default as Random} from '../utils/random';
@@ -55,7 +55,7 @@ const GameStore = Reflux.createStore({
         // player1Elements: [
         // 'asdf',
         // 'asdf'
-        //]
+        // ]
       }
     });
 
@@ -82,7 +82,7 @@ const GameStore = Reflux.createStore({
   _calculatedState() {
     return {
       readyToSummon: this._pickedElements.length === 2
-    }
+    };
   },
 
   _generateElements() {
