@@ -11,8 +11,8 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="game__element" onClick={this.handleClick}>
-        <image src={this.props.image}/>
+      <div onClick={this.handleClick}>
+        <image className="game__element" src={this.props.image}/>
         <span>{this.props.label}</span>
       </div>
     );
