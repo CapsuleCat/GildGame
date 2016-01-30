@@ -1,6 +1,8 @@
 G.I.L.D. Game
 =============
 
+[![Build Status](https://travis-ci.org/CapsuleCat/GildGame.svg?branch=develop)](https://travis-ci.org/CapsuleCat/GildGame)
+
 Global Game Jam 2016 game. 48 hours. LET'S DO THIS.
 
 Authors:
