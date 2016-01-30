@@ -18,9 +18,7 @@ export default React.createClass({
     if (this.props.readyToShowMonsters) {
       arena = <Arena />;
       summonRing = '';
-    }
-    else if (this.props.readyToSummon &&
-        !this.props.readyToRoShamBo) {
+    } else if (this.props.readyToSummon && !this.props.readyToRoShamBo) {
       summonButton = <SummonButton />;
     }
 
