@@ -5,12 +5,11 @@ import {default as LobbyHeader} from '../lobby-header/lobby-header.jsx';
 
 export default React.createClass({
   render() {
-    return {
+    return (
       <div>
         <LobbyHeader/>
         <LobbyList/>
-        //TODO
       </div>
-    }
+    );
   }
 });

@@ -3,14 +3,17 @@ import React from 'react';
 export default React.createClass({
 
   handleClick(e) {
-    //TODO
+    e.preventDefault();
+    // TODO
   },
 
   render() {
-    <div>
-      <span>{this.props.username}</span>
+    return (
+      <div>
+        <span>{this.props.username}</span>
 
-      <button onClick={this.handleClick}>Join</button>
-    </div>
+        <button onClick={this.handleClick}>Join</button>
+      </div>
+    );
   }
 });

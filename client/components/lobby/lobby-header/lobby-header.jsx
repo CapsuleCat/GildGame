@@ -3,14 +3,17 @@ import React from 'react';
 
 export default React.createClass({
   handleClick(e) {
-    //TODO
+    e.preventDefault();
+    // TODO
   },
 
   render() {
-    <div>
-      <input type="text" ref="username"/>
+    return (
+      <div>
+        <input type="text" ref="username"/>
 
-      <button onClick={this.handleClick}>+ Create Room</button>
-    </div>
+        <button onClick={this.handleClick}>+ Create Room</button>
+      </div>
+    );
   }
 });
