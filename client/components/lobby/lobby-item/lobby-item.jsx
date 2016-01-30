@@ -2,6 +2,7 @@ import React from 'react';
 
 import {default as Game} from '../../game/game/game.jsx';
 
+import {GameActions} from '../../../stores/game-store';
 import {SceneActions} from '../../../stores/scene-store.jsx';
 import {LobbyActions} from '../../../stores/lobby-store';
 
@@ -10,7 +11,7 @@ export default React.createClass({
   handleClick(e) {
     e.preventDefault();
 
-    // TODO join game
+    // join game
     LobbyActions.join(
       this.props.gameId,
       this.props.username
@@ -18,6 +19,8 @@ export default React.createClass({
 
     // transition screen
     SceneActions.transition(<Game />);
+
+    GameActions.setGame(this.props.gameId, 2);
   },
 
   render() {

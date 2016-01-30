@@ -22,10 +22,13 @@ export default React.createClass({
 
     return (
       <div>
-        <WinCount winCount={this.state.game.winCount} />
+        <div className="game__container">
+          <WinCount winCount={this.state.game.winCount} />
 
-        <ActionArea />
-
+          <ActionArea
+              readyToSummon={this.state.game.readyToSummon}
+              readyToRoShamBo={this.state.game.readyToRoShamBo} />
+        </div>
         <ElementDashboard elements={this.state.game.elements} />
       </div>
     );

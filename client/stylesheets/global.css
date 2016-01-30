@@ -19,6 +19,7 @@ body {
   border-radius: 3%;
   overflow: hidden;
   margin-top: 20px;
+  position:relative;
 }
 .gild-btn {
   /*float:right;*/

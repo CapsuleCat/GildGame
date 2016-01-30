@@ -1,14 +1,17 @@
 import React from 'react';
 
+import {GameActions} from '../../../stores/game-store';
+
 export default React.createClass({
   handleClick(e) {
     e.preventDefault();
-    // TODO
+
+    GameActions.summon();
   },
 
   render() {
     return (
-      <div>
+      <div className="game__summon-btn">
         <button onClick={this.handleClick}>Summon</button>
       </div>
     );

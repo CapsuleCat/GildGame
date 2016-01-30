@@ -6,7 +6,7 @@ import {default as EnemyMonster} from '../enemy-monster/enemy-monster.jsx';
 export default React.createClass({
   render() {
     return (
-      <div>
+      <div className="game__arena">
         <MyMonster
           imageURL={this.props.myMonster.imageURL}
           key={this.props.myMonster.monsterId}/>
