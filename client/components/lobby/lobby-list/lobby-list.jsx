@@ -7,7 +7,7 @@ export default React.createClass({
     return (
       <div>
         {this.props.games.map((game) => {
-          return <LobbyItem username={game.userName} key={game.gameId}/>;
+          return <LobbyItem username={game.player1} key={game._id}/>;
         })}
       </div>
     );
