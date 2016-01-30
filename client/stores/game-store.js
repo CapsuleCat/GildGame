@@ -1,5 +1,9 @@
 import Reflux from 'reflux';
 
+import {default as Random} from '../utils/random';
+
+const TOTAL_ELEMENTS = 5;
+
 const GameActions = Reflux.createActions([
   'pick'
 ]);
@@ -37,10 +41,10 @@ const GameStore = Reflux.createStore({
   },
 
   _generateElements() {
-    // TODO pick 5 random elements
-    // and copy them into this._elements
-
-    
+    while (this._elements.length < TOTAL_ELEMENTS) {
+      let element = Object.assign({}, Random.pick(elements));  
+      this._elements.push(element);
+    }
   }
 });
 
