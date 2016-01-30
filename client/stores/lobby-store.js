@@ -135,7 +135,7 @@ const LobbyStore = Reflux.createStore({
   _calculateState(state) {
     return {
       isInLobby: (state.gameId !== null),
-      hasOtherPlayer: !!(state.otherUserName)
+      hasOtherPlayer: Boolean(state.otherUserName)
     };
   }
 });

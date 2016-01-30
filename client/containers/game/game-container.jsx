@@ -18,7 +18,7 @@ export default React.createClass({
   ],
 
   render() {
-    if ( ! this.state.lobby.hasOtherPlayer ) {
+    if ( !this.state.lobby.hasOtherPlayer ) {
       return (<Waiting />);
     }
 
