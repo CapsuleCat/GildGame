@@ -32,7 +32,7 @@ export default React.createClass({
           <label
               htmlFor="username"
               className="lobby__lobby-header--usernameLabel">
-              Username:
+              Username
           </label>
           <input
               className="lobby__lobby-header--usernameInput"
@@ -43,7 +43,7 @@ export default React.createClass({
         </div>
 
         <button
-          className="lobby__lobby-header--btn"
+          className="gild-btn lobby__lobby-header--btn"
           onClick={this.handleClick}>+ Create Room</button>
       </div>
     );
