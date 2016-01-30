@@ -6,12 +6,17 @@ import {default as SummonButton} from '../summon-button/summon-button.jsx';
 
 
 export default React.createClass({
+  propTypes: {
+    readyToSummon: React.PropTypes.bool
+  },
+
   render() {
     let summonRing = <SummoningRing />
     let summonButton = '';
     let arena = '';
 
-    if (this.props.readyToRoShamBo) {
+    if (this.props.readyToSummon &&
+        !this.props.readyToRoShamBo) {
       summonButton = <SummonButton />
     }
 

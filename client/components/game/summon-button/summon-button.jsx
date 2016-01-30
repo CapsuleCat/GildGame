@@ -1,9 +1,12 @@
 import React from 'react';
 
+import {GameActions} from '../../../stores/game-store';
+
 export default React.createClass({
   handleClick(e) {
     e.preventDefault();
-    // TODO
+    
+    GameActions.summon();
   },
 
   render() {

@@ -6,18 +6,30 @@ import {default as Random} from '../utils/random';
 const TOTAL_ELEMENTS = 5;
 
 const GameActions = Reflux.createActions([
-  'pick'
+  'setGame',
+  'pick',
+  'summon',
 ]);
 
 const GameStore = Reflux.createStore({
   listenables: [ GameActions ],
 
   init() {
+    this._gameId = 0;
+    this._playerId = 0;
     this._wins = 0;
     this._elements = [];
     this._pickedElements = [];
+    this._readyToRoShamBo = false;
 
     this._generateElements();
+  },
+
+  onSetGame(gameId, playerId) {
+    this._gameId = gameId;
+    this._playerId = playerId;
+
+    this.trigger(this.getInitialState());
   },
 
   onPick(index) {
@@ -33,13 +45,35 @@ const GameStore = Reflux.createStore({
     }
   },
 
+  onSummon() {
+    // TODO send to server
+    Games.update({
+      _id: this._gameId
+    }, {
+      $set: {
+        // player1Ready: true
+        // player1Elements: [
+        // 'asdf',
+        // 'asdf'
+        //]
+      }
+    });
+
+    // set ready
+    this._readyToRoShamBo = true;
+
+    // TRIGGER
+    this.trigger(this.getInitialState());
+  },
+
   getInitialState() {
     return Object.assign(
       {},
       {
         winCount: this._wins,
         elements: this._elements,
-        pickedElements: this._pickedElements
+        pickedElements: this._pickedElements,
+        readyToRoShamBo: this._readyToRoShamBo
       },
       this._calculatedState()
     );
@@ -47,7 +81,7 @@ const GameStore = Reflux.createStore({
 
   _calculatedState() {
     return {
-      readyToRoShamBo: this._pickedElements.length === 2
+      readyToSummon: this._pickedElements.length === 2
     }
   },
 

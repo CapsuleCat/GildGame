@@ -24,7 +24,9 @@ export default React.createClass({
       <div>
         <WinCount winCount={this.state.game.winCount} />
 
-        <ActionArea />
+        <ActionArea
+            readyToSummon={this.state.game.readyToSummon}
+            readyToRoShamBo={this.state.game.readyToRoShamBo} />
 
         <ElementDashboard elements={this.state.game.elements} />
       </div>
