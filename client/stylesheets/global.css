@@ -6,7 +6,3 @@
 body > div {
   transition: all 1s ease-in-out;
 }
-
-body {
-  background-color: grey; /* TODO update color based on style sheet */
-}

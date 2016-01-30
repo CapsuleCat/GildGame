@@ -24,7 +24,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="clearfix">
+      <div className="clearfix lobby__lobby-header">
         <div>
           <label
               htmlFor="username"

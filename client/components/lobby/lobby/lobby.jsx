@@ -7,8 +7,10 @@ export default React.createClass({
   render() {
     return (
       <div className="lobby__lobby">
-        <Title />
-        <LobbyContainer />
+        <div>
+          <Title />
+          <LobbyContainer />
+        </div>
       </div>
     );
   }
