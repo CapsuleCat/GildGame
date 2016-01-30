@@ -1,3 +1,6 @@
 .game__element-dashboard {
-  background-color: black;
+  background-color: #181F20;
+  height: 25%;
+  position: absolute;
+  bottom: 0;
 }

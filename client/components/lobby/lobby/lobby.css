@@ -1,11 +1,5 @@
 .lobby__lobby {
-  background-color: #283239;
-  width:50%;
-  margin-left:auto;
-  margin-right:auto;
-  width: 600px;
-  height: 600px;
-  border-radius: 3%;
-  overflow: hidden;
-  margin-top: 20px;
+  margin-left:40px;
+  margin-right:40px;
+  margin-top:20px;
 }
