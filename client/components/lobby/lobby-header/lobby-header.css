@@ -1,27 +1,31 @@
 .lobby__lobby-header {
-  /*clear:both;*/
-  margin-left:20px;
-  margin-right:20px;
+  /*clear:both;
+  margin-left:40px;
+  margin-right:40px;
+  margin-top:20px;*/
+  margin-bottom:40px;
 }
 .lobby__lobby-header--usernameLabel {
   float:left;
-  color:white;
+  margin-top:.2em;
+  font-size:1.5em;
 }
 .lobby__lobby-header--usernameInput {
   float:left;
-  margin-left: 20px;
+  margin-left:20px;
 }
 .lobby__lobby-header--btn {
   float:right;
-  border: none;
+  padding:5px;
+  /*border: none;
     font-family: inherit;
     font-size: inherit;
     color: inherit;
     background: none;
     cursor: pointer;
-    padding: 25px 80px;
+    padding: 5px;
     display: inline-block;
-    margin: 15px 30px;
+    margin: 0px;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
@@ -32,9 +36,9 @@
     transition: all 0.3s;
     background: #cb4e4e;
     color: #fff;
-    box-shadow: 0 6px #ab3c3c;
+    box-shadow: 0 4px #ab3c3c;
     -webkit-transition: none;
     -moz-transition: none;
     transition: none;
-    border-radius: 0 0 5px 5px;
+    border-radius: 4px;*/
 }

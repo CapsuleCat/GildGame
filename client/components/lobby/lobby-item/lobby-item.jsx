@@ -22,10 +22,12 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="lobby__item">
-        <span className="lobby__item-username">{this.props.otherUsername}</span>
+      <div className="clearfix">
+        <div className="lobby__item">
+          <span className="lobby__item-username">{this.props.otherUsername}</span>
 
-        <button className="lobby__item-button" onClick={this.handleClick}>Join</button>
+          <button className="gild-btn lobby__item-btn" onClick={this.handleClick}>Join</button>
+        </div>
       </div>
     );
   }

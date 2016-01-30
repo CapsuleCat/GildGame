@@ -1,0 +1,10 @@
+.lobby__item {
+  margin:5px 0px 40px 0px;
+  /*float:right;*/
+}
+.lobby__item-username {
+  float:left;
+}
+.lobby__item-btn {
+  float:right;
+}
