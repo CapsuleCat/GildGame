@@ -34,11 +34,21 @@ const GameStore = Reflux.createStore({
   },
 
   getInitialState() {
+    return Object.assign(
+      {},
+      {
+        winCount: this._wins,
+        elements: this._elements,
+        pickedElements: this._pickedElements
+      },
+      this._calculatedState()
+    );
+  },
+
+  _calculatedState() {
     return {
-      winCount: this._wins,
-      elements: this._elements,
-      pickedElements: this._pickedElements
-    };
+      readyToRoShamBo: this._pickedElements.length === 2
+    }
   },
 
   _generateElements() {
