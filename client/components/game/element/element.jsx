@@ -12,8 +12,8 @@ export default React.createClass({
   render() {
     return (
       <div onClick={this.handleClick}>
-        TODO
-        <image source="{this.props.imageURL}"/>
+        <image src={this.props.image}/>
+        <span>{this.props.label}</span>
       </div>
     );
   }

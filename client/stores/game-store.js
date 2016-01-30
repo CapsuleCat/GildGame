@@ -1,3 +1,4 @@
+/* global elements */
 import Reflux from 'reflux';
 
 import {default as Random} from '../utils/random';
@@ -42,7 +43,7 @@ const GameStore = Reflux.createStore({
 
   _generateElements() {
     while (this._elements.length < TOTAL_ELEMENTS) {
-      let element = Object.assign({}, Random.pick(elements));  
+      let element = Object.assign({}, Random.pick(elements));
       this._elements.push(element);
     }
   }

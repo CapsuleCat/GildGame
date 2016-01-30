@@ -10,7 +10,8 @@ export default React.createClass({
             return <Element
                 key={i}
                 index={i}
-                imageURL={element.imageURL}/>;
+                label={element.label}
+                image={element.image}/>;
           })}
         </div>
     );
