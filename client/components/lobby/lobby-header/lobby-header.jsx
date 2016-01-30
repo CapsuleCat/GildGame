@@ -8,7 +8,7 @@ import {LobbyActions} from '../../../stores/lobby-store';
 export default React.createClass({
   handleClick(e) {
     e.preventDefault();
-    
+
     const username = this.refs.username.value;
 
     LobbyActions.create(username);
