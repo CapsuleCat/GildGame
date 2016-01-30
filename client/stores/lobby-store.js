@@ -1,4 +1,4 @@
-import React from 'react';
+/* global Games */
 import Reflux from 'reflux';
 
 const LobbyActions = Reflux.createActions([
@@ -8,7 +8,7 @@ const LobbyActions = Reflux.createActions([
 ]);
 
 const LobbyStore = Reflux.createStore({
-  listenables: [LobbyActions],
+  listenables: [ LobbyActions ],
 
   init() {
     this._lobbies = [];
@@ -17,7 +17,7 @@ const LobbyStore = Reflux.createStore({
       userName: '',
       otherUserName: ''
     };
-  
+
     this._track();
 
     this.trigger(this.getInitialState());
@@ -47,13 +47,35 @@ const LobbyStore = Reflux.createStore({
 
     this._lobby.userName = username;
     this._lobby.otherUserName = game.player1;
-    this._lobby.gameId = id;
+    this._lobby.gameId = gameId;
 
-    _track();
+    this.trigger(this.getInitialState());
   },
 
-  onLeave(gameId) {
-    // TODO
+  onLeave() {
+    let game = Games.findOne({
+      _id: this._lobby.gameId
+    });
+
+    if ( game ) {
+      // Figure out who is leaving
+      let leaveObject = {};
+
+      if ( game._lobby.userName === game.player1 ) {
+        leaveObject.player1 = null;
+      } else {
+        leaveObject.player2 = null;
+      }
+
+      Games.update({
+        _id: this._lobby.gameId
+      }, leaveObject);
+    }
+
+    this._lobby.gameId = null;
+    this._lobby.otherUserName = '';
+
+    this.trigger(this.getInitialState());
   },
 
   getInitialState() {
@@ -62,17 +84,15 @@ const LobbyStore = Reflux.createStore({
     );
 
     return Object.assign(
-        {},
-        this._lobby,
-        calculatedState,
-        {
-          lobbies: this._lobbies
-        }
+      {},
+      this._lobby,
+      calculatedState,
+      { lobbies: this._lobbies }
     );
   },
 
   _track() {
-    Tracker.autorun(Meteor.bindEnvironment((computation) => {
+    Tracker.autorun(Meteor.bindEnvironment((/* computation */) => {
       let games = Games.find({
         player2: null
       }).fetch();
@@ -95,7 +115,7 @@ const LobbyStore = Reflux.createStore({
           this._lobby.otherUserName = game.player2;
         }
       }
-      
+
       // TODO any other data we need to sync
       this.trigger(this.getInitialState());
     }));
@@ -105,8 +125,8 @@ const LobbyStore = Reflux.createStore({
     return {
       isInLobby: (state.gameId !== null),
       hasOtherPlayer: (state.otherUserName !== '')
-    }
+    };
   }
-})
+});
 
 export default { LobbyActions, LobbyStore };

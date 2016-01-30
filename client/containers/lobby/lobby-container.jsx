@@ -4,15 +4,17 @@ import Reflux from 'reflux';
 import {LobbyStore} from '../../stores/lobby-store';
 
 export default React.createClass({
-  mixins: [Reflux.connect(LobbyStore, 'lobby')],
+  mixins: [ Reflux.connect(LobbyStore, 'lobby') ],
 
   render() {
-    <div>
-      Lobby Store
+    return (
+      <div>
+        Lobby Store
 
-      Current game state:
+        Current game state:
 
-      <span>{this.props.lobby.gameId}</span>
-    </div>
+        <span>{this.props.lobby.gameId}</span>
+      </div>
+    );
   }
 });
