@@ -24,17 +24,24 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="clearfix lobby__lobby-header">
         <div>
-          <label htmlFor="username">Username: </label>
+          <label
+              htmlFor="username"
+              className="lobby__lobby-header--usernameLabel">
+              Username:
+          </label>
           <input
+              className="lobby__lobby-header--usernameInput"
               onChange={this.handleChange}
               id="username"
               type="text"
               ref="username" />
         </div>
 
-        <button onClick={this.handleClick}>+ Create Room</button>
+        <button
+          className="lobby__lobby-header--btn"
+          onClick={this.handleClick}>+ Create Room</button>
       </div>
     );
   }
