@@ -16,12 +16,22 @@ export default React.createClass({
     SceneActions.transition(<Game />);
   },
 
+  handleChange() {
+    const username = this.refs.username.value;
+
+    LobbyActions.updateUserName(username);
+  },
+
   render() {
     return (
       <div>
         <div>
           <label htmlFor="username">Username: </label>
-          <input id="username" type="text" ref="username"/>
+          <input
+              onChange={this.handleChange}
+              id="username"
+              type="text"
+              ref="username" />
         </div>
 
         <button onClick={this.handleClick}>+ Create Room</button>
