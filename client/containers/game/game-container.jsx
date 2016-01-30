@@ -1,10 +1,8 @@
 import React from 'react';
 import Reflux from 'reflux';
 
-import {default as SummoningRing} from '../../components/game/summoning-ring/summoning-ring.jsx';
-import {default as SummonButton} from '../../components/game/summon-button/summon-button.jsx';
-import {default as Arena} from '../../components/game/arena/arena.jsx';
 import {default as WinCount} from '../../components/game/win-count/win-count.jsx';
+import {default as ActionArea} from '../../components/game/action-area/action-area.jsx';
 import {default as ElementDashboard} from '../../components/game/element-dashboard/element-dashboard.jsx';
 import {default as Waiting} from '../../components/game/waiting/waiting.jsx';
 
@@ -23,16 +21,14 @@ export default React.createClass({
     }
 
     return (
-      // TODO
       <div>
-        // Required components
-        <WinCount winCount={this.state.game.winCount}/>
-        <ElementDashboard/>
+        <WinCount winCount={this.state.game.winCount} />
 
-        // Conditional components
-        <SummoningRing/>
-        <SummonButton/>
-        <Arena/>
+        <ActionArea
+            readyToSummon={this.state.game.readyToSummon}
+            readyToRoShamBo={this.state.game.readyToRoShamBo} />
+
+        <ElementDashboard elements={this.state.game.elements} />
       </div>
     );
   }

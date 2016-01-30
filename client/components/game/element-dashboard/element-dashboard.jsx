@@ -7,7 +7,11 @@ export default React.createClass({
     return (
         <div>
           {this.props.elements.map((element, i) => {
-            return <Element key={i} imageURL={element.imageURL}/>;
+            return <Element
+                key={i}
+                index={i}
+                label={element.label}
+                image={element.image}/>;
           })}
         </div>
     );

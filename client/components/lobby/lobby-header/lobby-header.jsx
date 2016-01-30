@@ -2,6 +2,7 @@ import React from 'react';
 
 import {default as Game} from '../../game/game/game.jsx';
 
+import {GameActions} from '../../../stores/game-store';
 import {SceneActions} from '../../../stores/scene-store.jsx';
 import {LobbyActions} from '../../../stores/lobby-store';
 
@@ -14,6 +15,8 @@ export default React.createClass({
     LobbyActions.create(username);
 
     SceneActions.transition(<Game />);
+
+    GameActions.setGame(this.props.gameId, 1);
   },
 
   handleChange() {
