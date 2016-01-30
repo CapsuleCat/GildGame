@@ -1,12 +1,11 @@
 import React from 'react';
-// import Reflux from 'reflux';
+import Reflux from 'reflux';
+import { SceneStore } from '../../stores/scene-store.jsx';
 
-// TODO use the Scene Store
-// TODO use the GameState Store
 export default React.createClass({
+  mixins: [ Reflux.connect(SceneStore, 'scene') ],
+
   render() {
-    return (
-      <div>Game container</div>
-    );
+    return SceneStore.getScene();
   }
 });
