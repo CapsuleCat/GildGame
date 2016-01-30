@@ -12,11 +12,14 @@ export default React.createClass({
 
     const username = this.refs.username.value;
 
-    LobbyActions.create(username);
+    let gameId = LobbyActions.create(username, (gameId) => {
+      GameActions.setGame(
+        gameId,
+        1
+      );
+    });
 
     SceneActions.transition(<Game />);
-
-    GameActions.setGame(this.props.gameId, 1);
   },
 
   handleChange() {
