@@ -4,7 +4,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <span>Wins: {this.props.winCnt}</span>
+        <h3>Waiting...</h3>
       </div>
     );
   }
