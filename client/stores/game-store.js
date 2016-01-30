@@ -20,7 +20,9 @@ const GameStore = Reflux.createStore({
     this._wins = 0;
     this._elements = [];
     this._pickedElements = [];
+
     this._readyToRoShamBo = false;
+    this._readyToShowMonsters = false;
 
     this._generateElements();
   },
@@ -29,13 +31,15 @@ const GameStore = Reflux.createStore({
     this._gameId = gameId;
     this._playerId = playerId;
 
+    this._track();
+
     this.trigger(this.getInitialState());
   },
 
   onPick(index) {
     if (this._pickedElements.length < 2) {
       // remove element
-      let element = this._elements.splice(index, 1);
+      let element = this._elements.splice(index, 1)[0];
 
       // add it to picked elements
       this._pickedElements.push(element);
@@ -46,17 +50,19 @@ const GameStore = Reflux.createStore({
   },
 
   onSummon() {
-    // TODO send to server
+    // send to server
+    let updateObject = {};
+    let player = 'player' + this._playerId;
+    updateObject[player + 'Ready'] = true;
+    updateObject[player + 'Elements'] = [
+      this._pickedElements[0].name,
+      this._pickedElements[1].name
+    ];
+
     Games.update({
       _id: this._gameId
     }, {
-      $set: {
-        // player1Ready: true
-        // player1Elements: [
-        // 'asdf',
-        // 'asdf'
-        // ]
-      }
+      $set: updateObject
     });
 
     // set ready
@@ -90,6 +96,25 @@ const GameStore = Reflux.createStore({
       let element = Object.assign({}, Random.pick(elements));
       this._elements.push(element);
     }
+  },
+
+  _track() {
+    Tracker.autorun(Meteor.bindEnvironment((/* computation */) => {
+      let game = Games.findOne({
+        _id: this._gameId
+      });
+
+      if ( typeof game !== 'undefined' &&
+           game !== null ) {
+        if (game.player1Ready && game.player2Ready) {
+          this._readyToShowMonsters = true;
+        }
+
+        // Basically checking on the other player
+      }
+
+      this.trigger(this.getInitialState());
+    }));
   }
 });
 
