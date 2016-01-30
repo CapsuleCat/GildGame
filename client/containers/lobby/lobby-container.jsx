@@ -12,7 +12,9 @@ export default React.createClass({
     return (
       <div>
         <LobbyHeader/>
-        <LobbyList games={this.state.lobby.lobbies}/>
+        <LobbyList
+            username={this.state.lobby.userName}
+            games={this.state.lobby.lobbies}/>
       </div>
     );
   }

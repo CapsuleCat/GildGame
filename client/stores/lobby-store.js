@@ -4,6 +4,7 @@ import Reflux from 'reflux';
 const LobbyActions = Reflux.createActions([
   'create',
   'join',
+  'updateUserName',
   'leave'
 ]);
 
@@ -42,12 +43,20 @@ const LobbyStore = Reflux.createStore({
     Games.update({
       _id: gameId
     }, {
-      player2: username
+      $set: {
+        player2: username
+      }
     });
 
     this._lobby.userName = username;
     this._lobby.otherUserName = game.player1;
     this._lobby.gameId = gameId;
+
+    this.trigger(this.getInitialState());
+  },
+
+  onUpdateUserName(username) {
+    this._lobby.userName = username;
 
     this.trigger(this.getInitialState());
   },
@@ -69,7 +78,9 @@ const LobbyStore = Reflux.createStore({
 
       Games.update({
         _id: this._lobby.gameId
-      }, leaveObject);
+      }, {
+        $set: leaveObject
+      });
     }
 
     this._lobby.gameId = null;
