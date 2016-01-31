@@ -1,6 +1,8 @@
 /* global elements, monsters, Games */
 import Reflux from 'reflux';
 
+import {SceneActions} from '../actions/scene-actions';
+
 import {default as Random} from '../utils/random';
 
 const TOTAL_ELEMENTS = 5;
@@ -9,16 +11,13 @@ const GameActions = Reflux.createActions([
   'setGame',
   'pick',
   'summon',
+  'endRound',
 ]);
 
 const GameStore = Reflux.createStore({
   listenables: [ GameActions ],
 
-  init() {
-    this._gameId = 0;
-    this._playerId = 0;
-    this._wins = 0;
-    this._elements = [];
+  _softReset() {
     this._pickedElements = [];
     this._myMonster = null;
     this._otherMonster = null;
@@ -27,6 +26,16 @@ const GameStore = Reflux.createStore({
     this._readyToShowMonsters = false;
 
     this._generateElements();
+  },
+
+  init() {
+    this._gameId = 0;
+    this._playerId = 0;
+    this._wins = 0;
+    this._loses = 0;
+    this._elements = [];
+
+    this._softReset();
   },
 
   onSetGame(gameId, playerId) {
@@ -71,6 +80,32 @@ const GameStore = Reflux.createStore({
     this._readyToRoShamBo = true;
 
     // TRIGGER
+    this.trigger(this.getInitialState());
+  },
+
+  onEndRound() {
+    // Determine if we won
+    var loses = this._myMonster.losesAgainst.indexOf(this._otherMonster.name) !== -1;
+    var wins = this._myMonster.winsAgainst.indexOf(this._otherMonster.name) !== -1;
+
+    // Increment our wins
+    if (wins) {
+      this._wins++;
+    }
+    // Increment our loses
+    if (loses) {
+      this._losses++;
+    }
+
+    // If someone reached three, end
+    if (wins >= 3 || loses >= 3) {
+      // end
+      SceneActions.end();
+    } else {
+      // reset
+      this._softReset();
+    }
+
     this.trigger(this.getInitialState());
   },
 
