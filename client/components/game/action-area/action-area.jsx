@@ -116,7 +116,7 @@ export default React.createClass({
     }
 
     if (this.state.fightText) {
-      fightText = <p>{this.state.fightText}</p>;
+      fightText = <div className="game__fight-text"><p>{this.state.fightText}</p></div>;
     }
 
     return (
