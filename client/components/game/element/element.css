@@ -1,8 +1,9 @@
 .game__element-div{
-	float: left;
 	width: 20%;
-	/*padding: 0px 5px;*/
 	margin-top: 15px;
+  min-width: 60px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .game__element{
