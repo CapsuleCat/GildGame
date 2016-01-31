@@ -2,7 +2,7 @@ import React from 'react';
 
 import {default as SummoningRing} from '../summoning-ring/summoning-ring.jsx';
 import {default as SummonButton} from '../summon-button/summon-button.jsx';
-// import {default as Arena} from '../arena/arena.jsx';
+import {default as Arena} from '../arena/arena.jsx';
 
 
 export default React.createClass({
@@ -16,7 +16,11 @@ export default React.createClass({
     let arena = '';
 
     if (this.props.readyToShowMonsters) {
-      arena = <Arena />;
+      arena = (
+        <Arena
+            myMonster={this.props.myMonster}
+            otherMonster={this.props.otherMonster}/>
+      );
       summonRing = '';
     } else if (this.props.readyToSummon && !this.props.readyToRoShamBo) {
       summonButton = <SummonButton />;
