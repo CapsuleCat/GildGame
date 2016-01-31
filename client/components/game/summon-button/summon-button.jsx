@@ -12,7 +12,7 @@ export default React.createClass({
   render() {
     return (
       <div className="game__summon-btn">
-        <button onClick={this.handleClick}>Summon</button>
+        <button onClick={this.handleClick} className="gild-btn">Summon</button>
       </div>
     );
   }
