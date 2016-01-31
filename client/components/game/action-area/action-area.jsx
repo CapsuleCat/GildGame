@@ -3,8 +3,13 @@ import React from 'react';
 import {default as SummoningRing} from '../summoning-ring/summoning-ring.jsx';
 import {default as SummonButton} from '../summon-button/summon-button.jsx';
 import {default as Arena} from '../arena/arena.jsx';
+import {default as Monster} from '../monster/monster.jsx';
 
-import {GameActions} from '../../../stores/game-store';
+import {audio} from '../../../audio';
+
+import {default as GameUtil} from '../../../utils/game';
+
+import {GameActions, GameStore} from '../../../stores/game-store';
 
 // TODO this Action Area is really
 // and Action Area Container
@@ -25,15 +30,19 @@ export default React.createClass({
         return;
       }
 
+      audio.summon.play();
+
       this.otherTimer = setTimeout(() => {
-        // display who won
-        // TODO ugh refeactor
-        var loses = newProps.myMonster.losesAgainst.indexOf(this.props.otherMonster.name) !== -1;
-        var wins = newProps.myMonster.winsAgainst.indexOf(this.props.otherMonster.name) !== -1;
+        // Display who won
+        let result = GameUtil.determineWinner(
+          newProps.myMonster,
+          newProps.otherMonster
+        );
+
         var a;
         var b;
 
-        if (loses) {
+        if (result === 'lose') {
           a = newProps.otherMonster.label;
           b = newProps.myMonster.label;
         } else {
@@ -43,7 +52,7 @@ export default React.createClass({
 
         var fightText = a + ' beats ' + b;
 
-        if (!wins && !loses) {
+        if (result === 'draw') {
           fightText = a + ' and ' + b + ' are in an eternal struggle';
         }
 
@@ -69,6 +78,7 @@ export default React.createClass({
     let summonButton = '';
     let arena = '';
     let fightText = '';
+    let monster = '';
 
     if (this.props.readyToShowMonsters) {
       arena = (
@@ -79,6 +89,9 @@ export default React.createClass({
       summonRing = '';
     } else if (this.props.readyToSummon && !this.props.readyToRoShamBo) {
       summonButton = <SummonButton />;
+    } else if (this.props.readyToRoShamBo) {
+      let myMonster = GameStore.getMyMonster();
+      monster = <Monster image={myMonster.image} label={myMonster.label}/>;
     }
 
     if (this.state.fightText) {
@@ -86,11 +99,12 @@ export default React.createClass({
     }
 
     return (
-      <div>
+      <div className="game__action-area">
         {fightText}
         {summonRing}
         {summonButton}
         {arena}
+        {monster}
       </div>
     );
   }
