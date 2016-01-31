@@ -4,11 +4,9 @@ import {default as SummoningRing} from '../summoning-ring/summoning-ring.jsx';
 import {default as SummonButton} from '../summon-button/summon-button.jsx';
 import {default as Arena} from '../arena/arena.jsx';
 
-<<<<<<< HEAD
 import {audio} from '../../../audio';
-=======
+
 import {default as GameUtil} from '../../../utils/game';
->>>>>>> 5f11ee6fe84882b3f2e6d41121d5ef2df3d22dd3
 
 import {GameActions} from '../../../stores/game-store';
 
