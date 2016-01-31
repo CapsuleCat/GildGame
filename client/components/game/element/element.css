@@ -1,7 +1,7 @@
 .game__element-div{
 	width: 20%;
 	margin-top: 15px;
-  min-width: 100px;
+  min-width: 60px;
   display: inline-block;
   vertical-align: top;
 }
