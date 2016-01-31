@@ -3,10 +3,13 @@ import React from 'react';
 import {default as SummoningRing} from '../summoning-ring/summoning-ring.jsx';
 import {default as SummonButton} from '../summon-button/summon-button.jsx';
 import {default as Arena} from '../arena/arena.jsx';
+import {default as Monster} from '../monster/monster.jsx';
+
+import {audio} from '../../../audio';
 
 import {default as GameUtil} from '../../../utils/game';
 
-import {GameActions} from '../../../stores/game-store';
+import {GameActions, GameStore} from '../../../stores/game-store';
 
 // TODO this Action Area is really
 // and Action Area Container
@@ -26,6 +29,8 @@ export default React.createClass({
       if (this.timer) {
         return;
       }
+
+      audio.summon.play();
 
       this.otherTimer = setTimeout(() => {
         // Display who won
@@ -73,6 +78,7 @@ export default React.createClass({
     let summonButton = '';
     let arena = '';
     let fightText = '';
+    let monster = '';
 
     if (this.props.readyToShowMonsters) {
       arena = (
@@ -83,6 +89,9 @@ export default React.createClass({
       summonRing = '';
     } else if (this.props.readyToSummon && !this.props.readyToRoShamBo) {
       summonButton = <SummonButton />;
+    } else if (this.props.readyToRoShamBo) {
+      let myMonster = GameStore.getMyMonster();
+      monster = <Monster image={myMonster.image} label={myMonster.label}/>;
     }
 
     if (this.state.fightText) {
@@ -90,11 +99,12 @@ export default React.createClass({
     }
 
     return (
-      <div>
+      <div className="game__action-area">
         {fightText}
         {summonRing}
         {summonButton}
         {arena}
+        {monster}
       </div>
     );
   }

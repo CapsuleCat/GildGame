@@ -11,12 +11,10 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="game__end-container">
-        <div className="game__end">
-          <h3><div>You have {this.props.result}</div></h3>
+      <div>
+        <div>Lost Connection to other player</div>
 
-          <button onClick={this.handleClick} className="gild-btn game__end-btn">Play Again?</button>
-        </div>
+        <button onClick={this.handleClick}>Okay :(</button>
       </div>
     );
   }
