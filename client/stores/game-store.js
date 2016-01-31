@@ -1,7 +1,7 @@
 /* global elements, monsters, Games */
 import Reflux from 'reflux';
 
-import {default as loseConnection} from '../utils/lose-connection.jsx';
+// import {default as loseConnection} from '../utils/lose-connection.jsx';
 import {default as Random} from '../utils/random';
 
 const TOTAL_ELEMENTS = 5;
@@ -173,7 +173,7 @@ const GameStore = Reflux.createStore({
 
     let time = Number(new Date()) - 5000;
     if (game['lastBeacon' + otherPlayerId] <= time) {
-      loseConnection();
+      //loseConnection();
     }
   }
 });
