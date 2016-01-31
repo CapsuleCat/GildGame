@@ -23,6 +23,7 @@
     "eslint": "1.10.x",
     "eslint-plugin-react": "3.15.x",
     "mocha": "2.x.x",
+    "particles.js": "^2.0.0",
     "react-addons-test-utils": ">=0.14.3 <=0.15.0",
     "reflux": "^0.3.0",
     "sillyname": "^0.1.0",

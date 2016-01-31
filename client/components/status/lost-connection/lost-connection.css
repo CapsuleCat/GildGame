@@ -1,0 +1,22 @@
+.game__lost-connection {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+}
+.game__lost-connection-btn {
+  padding: 5px 10px;
+}
+
+.game__lost-connection-container {
+  /*margin-left:40px;
+  margin-right:40px;
+  margin-top:20px;*/
+  max-width:550px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+.game__lost-connection h3 {
+  font-size: 19px;
+}

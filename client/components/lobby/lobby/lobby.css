@@ -2,9 +2,33 @@
   margin-left:20px;
   margin-right:20px;
   margin-top:20px;
+  z-index: 1;
 }
+
 .lobby__lobby-div {
   max-width: 550px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  z-index: 100;
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #b61924;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.particles-js-canvas-el {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
 }

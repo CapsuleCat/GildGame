@@ -8,7 +8,9 @@ function preload(imgArray) {
   }
 }
 
-var listOfImages = [];
+var listOfImages = [
+  '/concepts/summon-ring-blue.png'
+];
 
 monsters.forEach((m) => {
   listOfImages.push(

@@ -5,6 +5,7 @@
   height: 400px;
   display: table;
   width: 100%;
+  z-index: 100;
 }
 .game__summon-btn-div {
   display: table-cell;

@@ -3,4 +3,10 @@
   display: table-cell;
   vertical-align: middle;
   text-align: center;*/
+
+  position: relative;
+  z-index: 200;
+}
+.game__monster-label {
+  display: block;
 }

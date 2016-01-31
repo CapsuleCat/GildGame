@@ -3,12 +3,18 @@
   orientation: landscape;
 }
 
+* {
+  font-family: 'Megrim', cursive;
+}
+
 body > div {
   transition: all 1s ease-in-out;
 }
+
 body {
   color:white;
 }
+
 .view-container {
   background-color: #283239;
   width: 50%;

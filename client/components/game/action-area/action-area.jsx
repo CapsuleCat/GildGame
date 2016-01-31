@@ -11,9 +11,30 @@ import {default as GameUtil} from '../../../utils/game';
 
 import {GameActions, GameStore} from '../../../stores/game-store';
 
+let resizePreview = function () {
+  var height = $('.game__container').height();
+  var imgMaxHeight = height * 0.83;
+  var imgMarginTop = height * 0.075;
+
+  if (imgMaxHeight !== 0) {
+    $('.game__monster img').css('max-height',imgMaxHeight + 'px');
+    $('.game__monster img').css('margin-top',imgMarginTop + 'px');
+  }
+  // TODO: Finish
+};
+
 // TODO this Action Area is really
 // and Action Area Container
 export default React.createClass({
+  componentDidMount() {
+    $(window).resize(resizePreview);
+    resizePreview();
+  }, // TODO: Remove event on unmount
+
+  componentDidUpdate() {
+    resizePreview();
+  },
+
   getInitialState() {
     return {
       fightText: ''
@@ -91,7 +112,7 @@ export default React.createClass({
       summonButton = <SummonButton />;
     } else if (this.props.readyToRoShamBo) {
       let myMonster = GameStore.getMyMonster();
-      monster = <Monster image={myMonster.image} label={myMonster.label}/>;
+      monster = <div className="game__monster-preview"><Monster image={myMonster.image} label={myMonster.label}/></div>;
     }
 
     if (this.state.fightText) {
