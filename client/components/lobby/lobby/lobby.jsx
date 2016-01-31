@@ -7,7 +7,8 @@ import {audio} from '../../../audio';
 
 export default React.createClass({
   render() {
-    audio.chant.play();
+    //audio.chant.loop = true;
+    //audio.chant.play();
     return (
       <div className="lobby__lobby">
         <div className="lobby__lobby-div">
