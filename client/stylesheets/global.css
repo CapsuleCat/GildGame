@@ -29,6 +29,7 @@ body {
   overflow: hidden;
   position: absolute;
   left: 0;
+  top: 0;
 }
 .gild-btn {
   /*float:right;*/
