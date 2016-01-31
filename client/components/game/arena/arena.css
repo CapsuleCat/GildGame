@@ -1,0 +1,5 @@
+.game__arena {
+  height: 400px;
+  width: 100%;
+  display: table;
+}
