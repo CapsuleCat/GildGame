@@ -7,3 +7,6 @@
   position: relative;
   z-index: 200;
 }
+.game__monster-label {
+  display: block;
+}

@@ -4,3 +4,6 @@
   max-width: 500px;
   width: 100%;
 }
+.game__monster-preview .monster {
+  margin-top: 10%;
+}

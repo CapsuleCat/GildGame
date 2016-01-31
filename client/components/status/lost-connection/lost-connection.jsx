@@ -15,10 +15,12 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
-        <div>Lost Connection to other player</div>
+      <div className="game__lost-connection-container">
+        <div className="game__lost-connection">
+          <h3><div>Lost connection to other player</div></h3>
 
-        <button onClick={this.handleClick}>Okay :(</button>
+        <button className="gild-btn game__lost-connection-btn" onClick={this.handleClick}>Okay :(</button>
+        </div>
       </div>
     );
   }
