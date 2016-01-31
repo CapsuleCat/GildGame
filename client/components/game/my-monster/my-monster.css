@@ -1,9 +1,15 @@
 .game__my-monster {
-  width: 50%;
+  /*width: 50%;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  /*padding-right: 40px;*/
+  position: absolute;
+  top: 20%;*/
+  right: 53%;
+  -webkit-animation-name: fightRight; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+  animation-name: fightRight;
+  animation-duration: 4s;
 }
 
 .game__my-monster .game__monster-img {
@@ -13,4 +19,15 @@
   transform: scaleX(-1);
   filter: FlipH;
   -ms-filter: "FlipH";
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fightRight {
+    from {right: 53%;}
+    to {right: 36%;}
+}
+
+/* Standard syntax */
+@keyframes fightRight {
+    from {right: 53%;}
+    to {right: 36%;}
 }

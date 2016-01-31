@@ -1,7 +1,24 @@
 .game__enemy {
-  width: 50%;
+  /*width: 50%;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  /*padding-left: 40px;*/
+  position: absolute;
+  top: 20%;*/
+  left: 53%;
+  -webkit-animation-name: fightLeft; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+  animation-name: fightLeft;
+  animation-duration: 4s;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fightLeft {
+    from {left: 53%;}
+    to {left: 36%;}
+}
+
+/* Standard syntax */
+@keyframes fightLeft {
+    from {left: 53%;}
+    to {left: 36%;}
 }

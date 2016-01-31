@@ -93,7 +93,7 @@ export default React.createClass({
     }
 
     return (
-      <div>
+      <div className="game__action-area">
         {fightText}
         {summonRing}
         {summonButton}
