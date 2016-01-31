@@ -1,10 +1,9 @@
 import React from 'react';
 import Reflux from 'reflux';
-import {default as Lobby} from '../components/lobby/lobby/lobby.jsx';
 
-var SceneActions = Reflux.createActions([
-  'transition'
-]);
+import {SceneActions} from '../actions/scene-actions';
+
+import {default as Lobby} from '../components/lobby/lobby/lobby.jsx';
 
 var SceneStore = Reflux.createStore({
   listenables: [ SceneActions ],
@@ -37,4 +36,4 @@ var SceneStore = Reflux.createStore({
   }
 });
 
-export default {SceneActions, SceneStore};
+export default {SceneStore};

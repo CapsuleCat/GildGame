@@ -3,7 +3,7 @@ import React from 'react';
 import {default as Game} from '../../game/game/game.jsx';
 
 import {GameActions} from '../../../stores/game-store';
-import {SceneActions} from '../../../stores/scene-store.jsx';
+import {SceneActions} from '../../../actions/scene-actions';
 import {LobbyActions} from '../../../stores/lobby-store';
 
 export default React.createClass({
