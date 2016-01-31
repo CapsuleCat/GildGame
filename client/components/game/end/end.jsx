@@ -1,13 +1,20 @@
 import React from 'react';
 
+import {SceneActions} from '../../../actions/scene-actions';
+
 export default React.createClass({
-  // TODO
+  handleClick(e) {
+    e.preventDefault();
+
+    SceneActions.home();
+  },
+
   render() {
     return (
       <div>
         <div>You have {this.props.result}</div>
 
-        <button>Play Again?</button>
+        <button onClick={this.handleClick}>Play Again?</button>
       </div>
     );
   }
