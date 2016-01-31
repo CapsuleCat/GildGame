@@ -2,9 +2,13 @@ import React from 'react';
 
 import {SceneActions} from '../../../actions/scene-actions';
 
+import {audio} from '../../../audio';
+
 export default React.createClass({
   handleClick(e) {
     e.preventDefault();
+
+    audio.button.play();
 
     SceneActions.home();
   },
