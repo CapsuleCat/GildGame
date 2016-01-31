@@ -1,9 +1,10 @@
-var images = new Array()
+/* global monsters, elements */
+var images = [];
 
 function preload(imgArray) {
-  for (i = 0; i < imgArray.length; i++) {
-    images[i] = new Image()
-    images[i].src = imgArray[i]
+  for (let i = 0; i < imgArray.length; i++) {
+    images[i] = new Image();
+    images[i].src = imgArray[i];
   }
 }
 
