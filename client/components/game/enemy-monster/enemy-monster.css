@@ -1,0 +1,7 @@
+.game__enemy {
+  width: 50%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  /*padding-left: 40px;*/
+}
