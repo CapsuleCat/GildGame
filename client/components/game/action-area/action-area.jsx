@@ -6,6 +6,8 @@ import {default as Arena} from '../arena/arena.jsx';
 
 import {GameActions} from '../../../stores/game-store';
 
+// TODO this Action Area is really
+// and Action Area Container
 export default React.createClass({
   getInitialState() {
     return {

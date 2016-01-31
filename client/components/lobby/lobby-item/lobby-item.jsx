@@ -11,6 +11,10 @@ export default React.createClass({
   handleClick(e) {
     e.preventDefault();
 
+    if (this.props.username.trim() === '') {
+      return;
+    }
+
     // join game
     LobbyActions.join(
       this.props.gameId,

@@ -1,4 +1,5 @@
 import React from 'react';
+import generateName from 'sillyname';
 
 import {default as Game} from '../../game/game/game.jsx';
 
@@ -11,6 +12,10 @@ export default React.createClass({
     e.preventDefault();
 
     const username = this.refs.username.value;
+
+    if (username.trim() === '') {
+      return;
+    }
 
     LobbyActions.create(username, (gameId) => {
       GameActions.setGame(
@@ -29,6 +34,11 @@ export default React.createClass({
   },
 
   render() {
+    if (typeof this.givenName === 'undefined' || this.givenName === null) {
+      this.givenName = generateName();
+      LobbyActions.updateUserName(this.givenName);
+    }
+
     return (
       <div className="clearfix lobby__lobby-header">
         <div>
@@ -40,6 +50,7 @@ export default React.createClass({
           <input
               className="lobby__lobby-header--usernameInput"
               onChange={this.handleChange}
+              defaultValue={this.givenName}
               id="username"
               type="text"
               ref="username" />
