@@ -14,6 +14,20 @@ import {GameActions, GameStore} from '../../../stores/game-store';
 // TODO this Action Area is really
 // and Action Area Container
 export default React.createClass({
+  componentDidMount() {
+    $(window).resize(function () {
+      var height = $('.game__container').height();
+      var imgMaxHeight =  height*.83;
+      var imgMarginTop = height*.075;
+
+      $('.game__monster img').css('max-height',imgMaxHeight+'px');
+      $('.game__monster img').css('margin-top',imgMarginTop+'px');
+      // TODO: Finish
+    });
+
+    $(window).trigger('resize');
+  }, // TODO: Remove event on unmount
+
   getInitialState() {
     return {
       fightText: ''
