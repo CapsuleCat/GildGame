@@ -90,7 +90,7 @@ export default React.createClass({
       summonButton = <SummonButton />;
     } else if (this.props.readyToRoShamBo) {
       let myMonster = GameStore.getMyMonster();
-      monster = <Monster image={myMonster.image} label={myMonster.label}/>;
+      monster = <div className="game__monster-preview"><Monster image={myMonster.image} label={myMonster.label}/></div>;
     }
 
     if (this.state.fightText) {

@@ -4,3 +4,6 @@
   vertical-align: middle;
   text-align: center;*/
 }
+.game__monster-label {
+  display: block;
+}
