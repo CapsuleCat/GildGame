@@ -118,6 +118,7 @@ const GameStore = Reflux.createStore({
       }
 
       SceneActions.end(result);
+      this.init();
     } else {
       // reset
       this._softReset();
