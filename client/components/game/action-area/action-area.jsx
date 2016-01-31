@@ -4,6 +4,8 @@ import {default as SummoningRing} from '../summoning-ring/summoning-ring.jsx';
 import {default as SummonButton} from '../summon-button/summon-button.jsx';
 import {default as Arena} from '../arena/arena.jsx';
 
+import {audio} from '../../../audio';
+
 import {GameActions} from '../../../stores/game-store';
 
 // TODO this Action Area is really
@@ -21,6 +23,7 @@ export default React.createClass({
 
   componentWillReceiveProps(newProps) {
     if (newProps.readyToShowMonsters) {
+      audio.summon.play();
       if (this.timer) {
         return;
       }
