@@ -6,7 +6,7 @@ import {GameActions} from '../../../stores/game-store';
 import {SceneActions} from '../../../actions/scene-actions';
 import {LobbyActions} from '../../../stores/lobby-store';
 
-import {audio} from "../../../audio";
+import {audio} from '../../../audio';
 
 export default React.createClass({
 
@@ -27,7 +27,7 @@ export default React.createClass({
 
     // transition screen
     SceneActions.transition(<Game />);
-    
+    audio.chant.loop = false;
     GameActions.setGame(this.props.gameId, 2);
   },
 
