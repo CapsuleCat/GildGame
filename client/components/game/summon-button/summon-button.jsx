@@ -11,8 +11,10 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="game__summon-btn">
-        <button onClick={this.handleClick}>Summon</button>
+      <div className="game__summon-btn-container">
+        <div className="game__summon-btn-div">
+          <button onClick={this.handleClick} className="gild-btn game__summon-btn">Summon</button>
+        </div>
       </div>
     );
   }

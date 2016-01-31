@@ -1,7 +1,9 @@
-/* global elements, monsters, Games */
+/* global elements, Games */
 import Reflux from 'reflux';
 
-// import {default as loseConnection} from '../utils/lose-connection.jsx';
+import {SceneActions} from '../actions/scene-actions';
+
+import {default as GameUtil} from '../utils/game';
 import {default as Random} from '../utils/random';
 
 const TOTAL_ELEMENTS = 5;
@@ -10,16 +12,20 @@ const GameActions = Reflux.createActions([
   'setGame',
   'pick',
   'summon',
+  'endRound',
 ]);
 
+/**
+ * The data stored in the Game Store is:
+ *
+ * - gameId
+ * - userName
+ * - otherUserName
+ */
 const GameStore = Reflux.createStore({
   listenables: [ GameActions ],
 
-  init() {
-    this._gameId = 0;
-    this._playerId = 0;
-    this._wins = 0;
-    this._elements = [];
+  _softReset() {
     this._pickedElements = [];
     this._myMonster = null;
     this._otherMonster = null;
@@ -28,6 +34,28 @@ const GameStore = Reflux.createStore({
     this._readyToShowMonsters = false;
 
     this._generateElements();
+
+    let updateObject = {};
+
+    updateObject['player' + this._playerId + 'Ready'] = false;
+    updateObject['player' + this._playerId + 'Elements'] = null;
+    updateObject['player' + this._playerId + 'Monster'] = null;
+
+    Games.update({
+      _id: this._gameId
+    }, {
+      $set: updateObject
+    });
+  },
+
+  init() {
+    this._gameId = 0;
+    this._playerId = 0;
+    this._wins = 0;
+    this._losses = 0;
+    this._elements = [];
+
+    this._softReset();
   },
 
   onSetGame(gameId, playerId) {
@@ -72,6 +100,40 @@ const GameStore = Reflux.createStore({
     this._readyToRoShamBo = true;
 
     // TRIGGER
+    this.trigger(this.getInitialState());
+  },
+
+  onEndRound() {
+    // Determine if we won
+    let result = GameUtil.determineWinner(
+      this._myMonster,
+      this._otherMonster
+    );
+
+    // Increment our wins
+    if (result === 'win') {
+      this._wins++;
+    }
+    // Increment our loses
+    if (result === 'lose') {
+      this._losses++;
+    }
+
+    // If someone reached three, end
+    if (this._wins >= 3 || this._losses >= 3) {
+      // end
+      var resultText = 'won';
+      if (this._losses >= 3) {
+        resultText = 'lost';
+      }
+
+      SceneActions.end(resultText);
+      this.init();
+    } else {
+      // reset
+      this._softReset();
+    }
+
     this.trigger(this.getInitialState());
   },
 
@@ -121,8 +183,7 @@ const GameStore = Reflux.createStore({
 
           // TODO don't redetermine monsters
 
-          // determine monsters
-          this._myMonster = this._determineMonster(
+          this._myMonster = GameUtil.determineMonster(
             game['player' + this._playerId + 'Elements']
           );
 
@@ -132,7 +193,7 @@ const GameStore = Reflux.createStore({
             otherPlayerNumber = 1;
           }
 
-          this._otherMonster = this._determineMonster(
+          this._otherMonster = GameUtil.determineMonster(
             game['player' + otherPlayerNumber + 'Elements']
           );
         }
@@ -142,25 +203,6 @@ const GameStore = Reflux.createStore({
 
       this.trigger(this.getInitialState());
     }));
-  },
-
-  _determineMonster(elements) {
-    for (var i = 0; i < monsters.length; i++) {
-      var allMatch = true;
-      for (var j = 0; j < elements.length; j++) {
-        if (monsters[i].ingredients.indexOf(elements[j]) === -1) {
-          allMatch = false;
-          break;
-        }
-      }
-
-      if (allMatch) {
-        // TODO remove
-        console.log(monsters[i]);
-
-        return Object.assign({}, monsters[i]);
-      }
-    }
   },
 
   _checkIfDisconnected(game) {
@@ -173,7 +215,7 @@ const GameStore = Reflux.createStore({
 
     let time = Number(new Date()) - 5000;
     if (game['lastBeacon' + otherPlayerId] <= time) {
-      //loseConnection();
+      SceneActions.loseConnection();
     }
   }
 });

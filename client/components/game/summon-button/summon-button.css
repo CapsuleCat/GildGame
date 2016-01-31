@@ -1,0 +1,15 @@
+.game__summon-btn-container {
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  height: 400px;
+  display: table;
+  width: 100%;
+}
+.game__summon-btn-div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.game__summon-btn {
+  padding: 5px 10px;
+}

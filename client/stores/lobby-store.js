@@ -137,7 +137,6 @@ const LobbyStore = Reflux.createStore({
         }
       }
 
-      // TODO any other data we need to sync
       this.trigger(this.getInitialState());
     }));
   },
