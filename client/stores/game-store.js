@@ -26,13 +26,25 @@ const GameStore = Reflux.createStore({
     this._readyToShowMonsters = false;
 
     this._generateElements();
+
+    let updateObject = {};
+
+    updateObject['player' + this._playerId + 'Ready'] = false;
+    updateObject['player' + this._playerId + 'Elements'] = null;
+    updateObject['player' + this._playerId + 'Monster'] = null;
+
+    Games.update({
+      _id: this._gameId
+    }, {
+      $set: updateObject
+    });
   },
 
   init() {
     this._gameId = 0;
     this._playerId = 0;
     this._wins = 0;
-    this._loses = 0;
+    this._losses = 0;
     this._elements = [];
 
     this._softReset();
@@ -98,9 +110,14 @@ const GameStore = Reflux.createStore({
     }
 
     // If someone reached three, end
-    if (wins >= 3 || loses >= 3) {
+    if (this._wins >= 3 || this._losses >= 3) {
       // end
-      SceneActions.end();
+      var result = 'won';
+      if (this._losses >= 3) {
+        result = 'lost';
+      }
+
+      SceneActions.end(result);
     } else {
       // reset
       this._softReset();
@@ -149,8 +166,7 @@ const GameStore = Reflux.createStore({
         if (game.player1Ready && game.player2Ready) {
           this._readyToShowMonsters = true;
 
-          // TODO determine monsters
-
+          // determine monsters
           this._myMonster = this._determineMonster(
             game['player' + this._playerId + 'Elements']
           );
@@ -184,9 +200,6 @@ const GameStore = Reflux.createStore({
       }
 
       if (allMatch) {
-        // TODO remove
-        console.log(monsters[i]);
-
         return Object.assign({}, monsters[i]);
       }
     }

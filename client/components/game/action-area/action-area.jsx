@@ -24,8 +24,7 @@ export default React.createClass({
       }
 
       this.otherTimer = setTimeout(() => {
-        // TODO display who won
-        // this.setState
+        // display who won
         // TODO ugh refeactor
         var loses = newProps.myMonster.losesAgainst.indexOf(this.props.otherMonster.name) !== -1;
         var wins = newProps.myMonster.winsAgainst.indexOf(this.props.otherMonster.name) !== -1;
@@ -49,17 +48,17 @@ export default React.createClass({
         this.setState({
           fightText
         });
-      });
+      }, 3000);
 
       this.timer = setTimeout(() => {
-        GameActions.endRound();
-
         // clean up after ourselves
         this.timer = null;
         this.setState({
           fightText: ''
         });
-      }, 10000);
+
+        GameActions.endRound();
+      }, 8000);
     }
   },
 
