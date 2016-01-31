@@ -2,9 +2,13 @@ import React from 'react';
 
 import {GameActions} from '../../../stores/game-store';
 
+import {audio} from '../../../audio';
+
 export default React.createClass({
   handleClick(e) {
     e.preventDefault();
+
+    audio.elementIcon.play();
 
     GameActions.pick(this.props.index);
   },
