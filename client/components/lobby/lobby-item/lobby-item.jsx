@@ -27,7 +27,6 @@ export default React.createClass({
 
     // transition screen
     SceneActions.transition(<Game />);
-    audio.chant.loop = false;
     GameActions.setGame(this.props.gameId, 2);
   },
 
