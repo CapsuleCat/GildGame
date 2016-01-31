@@ -1,0 +1,31 @@
+
+.game__end-btn-container {
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  height: 400px;
+  display: table;
+  width: 100%;
+}
+.game__end-btn-div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.game__end {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+}
+.game__end-btn {
+  padding: 5px 10px;
+}
+
+.game__end-container {
+  /*margin-left:40px;
+  margin-right:40px;
+  margin-top:20px;*/
+  max-width:550px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
