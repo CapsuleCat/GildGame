@@ -5,8 +5,8 @@ import {default as SummonButton} from '../summon-button/summon-button.jsx';
 import {default as Arena} from '../arena/arena.jsx';
 
 import {default as GameUtil} from '../../../utils/game';
-
-import {GameActions} from '../../../stores/game-store';
+// TODO: Uncomment
+// import {GameActions} from '../../../stores/game-store';
 
 // TODO this Action Area is really
 // and Action Area Container
@@ -56,8 +56,8 @@ export default React.createClass({
         });
       }, 3000);
 
-      //TODO: Uncomment
-      /*this.timer = setTimeout(() => {
+      // TODO: Uncomment
+      /* this.timer = setTimeout(() => {
         // clean up after ourselves
         this.timer = null;
         this.setState({

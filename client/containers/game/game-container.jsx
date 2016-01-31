@@ -16,12 +16,12 @@ export default React.createClass({
   ],
 
   componentDidMount() {
-    $(window).resize(function() {
+    $(window).resize(function () {
       $('.game__container').height($(window).height() - 150);
     });
 
     $(window).trigger('resize');
-  }, //TODO: Remove event on unmount
+  }, // TODO: Remove event on unmount
 
   render() {
     if ( !this.state.lobby.hasOtherPlayer ) {
