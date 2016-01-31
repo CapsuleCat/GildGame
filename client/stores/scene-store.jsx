@@ -1,6 +1,8 @@
 import React from 'react';
 import Reflux from 'reflux';
 
+import {default as End} from '../components/game/end/end.jsx';
+
 import {SceneActions} from '../actions/scene-actions';
 
 import {default as Lobby} from '../components/lobby/lobby/lobby.jsx';
@@ -13,8 +15,14 @@ var SceneStore = Reflux.createStore({
     this._scene = null;
   },
 
-  onEnd() {
-    // TODO
+  onEnd(result) {
+    this.transition(
+      <End result={result}/>
+    );
+  },
+
+  onHome() {
+    this.transition(<Lobby />);
   },
 
   transition(scene) {
