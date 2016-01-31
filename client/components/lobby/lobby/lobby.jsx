@@ -88,8 +88,7 @@ export default React.createClass({
             mode: 'grab'
           },
           onclick: {
-            enable: true,
-            mode: 'push'
+            enable: false
           },
           resize: true
         },
