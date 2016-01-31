@@ -3,3 +3,14 @@
   width: 100%;
   display: table;
 }
+.game__arena .game__my-monster, .game__enemy {
+  width: 50%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  /*padding-right: 40px;*/
+  position: absolute;
+  top: 20%;
+  right: 53%;
+
+}

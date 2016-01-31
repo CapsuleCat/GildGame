@@ -15,6 +15,14 @@ export default React.createClass({
     Reflux.connect(GameStore, 'game')
   ],
 
+  componentDidMount() {
+    $(window).resize(function() {
+      $('.game__container').height($(window).height() - 150);
+    });
+
+    $(window).trigger('resize');
+  }, //TODO: Remove event on unmount
+
   render() {
     if ( !this.state.lobby.hasOtherPlayer ) {
       return (<Waiting />);

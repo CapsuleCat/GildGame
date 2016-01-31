@@ -52,7 +52,8 @@ export default React.createClass({
         });
       }, 3000);
 
-      this.timer = setTimeout(() => {
+      //TODO: Uncomment
+      /*this.timer = setTimeout(() => {
         // clean up after ourselves
         this.timer = null;
         this.setState({
@@ -60,7 +61,7 @@ export default React.createClass({
         });
 
         GameActions.endRound();
-      }, 8000);
+      }, 8000);*/
     }
   },
 
@@ -86,7 +87,7 @@ export default React.createClass({
     }
 
     return (
-      <div>
+      <div className="game__action-area">
         {fightText}
         {summonRing}
         {summonButton}
