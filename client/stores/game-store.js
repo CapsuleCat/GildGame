@@ -14,6 +14,13 @@ const GameActions = Reflux.createActions([
   'endRound',
 ]);
 
+/**
+ * The data stored in the Game Store is:
+ *
+ * - gameId
+ * - userName
+ * - otherUserName
+ */
 const GameStore = Reflux.createStore({
   listenables: [ GameActions ],
 
