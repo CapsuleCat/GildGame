@@ -34,7 +34,7 @@ const GameStore = Reflux.createStore({
     this._wins = 0;
     this._loses = 0;
     this._elements = [];
-    
+
     this._softReset();
   },
 
@@ -98,9 +98,9 @@ const GameStore = Reflux.createStore({
     }
 
     // If someone reached three, end
-    if (wins >= 3 || loses >=3) {
-      // TODO end
-
+    if (wins >= 3 || loses >= 3) {
+      // end
+      SceneActions.end();
     } else {
       // reset
       this._softReset();

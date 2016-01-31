@@ -10,7 +10,7 @@ export default React.createClass({
   getInitialState() {
     return {
       fightText: ''
-    }
+    };
   },
 
   propTypes: {
@@ -29,6 +29,8 @@ export default React.createClass({
         // TODO ugh refeactor
         var loses = newProps.myMonster.losesAgainst.indexOf(this.props.otherMonster.name) !== -1;
         var wins = newProps.myMonster.winsAgainst.indexOf(this.props.otherMonster.name) !== -1;
+        var a;
+        var b;
 
         if (loses) {
           a = newProps.otherMonster.label;
@@ -40,12 +42,12 @@ export default React.createClass({
 
         var fightText = a + ' beats ' + b;
 
-        if (! wins && ! loses) {
+        if (!wins && !loses) {
           fightText = a + ' and ' + b + ' are in an eternal struggle';
         }
 
         this.setState({
-          fightText: fightText
+          fightText
         });
       });
 

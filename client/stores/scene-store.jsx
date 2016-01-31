@@ -13,6 +13,10 @@ var SceneStore = Reflux.createStore({
     this._scene = null;
   },
 
+  onEnd() {
+    // TODO
+  },
+
   transition(scene) {
     this._scene = scene;
     this._sceneId = scene._rootNodeId;
