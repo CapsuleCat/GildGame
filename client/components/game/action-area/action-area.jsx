@@ -4,6 +4,8 @@ import {default as SummoningRing} from '../summoning-ring/summoning-ring.jsx';
 import {default as SummonButton} from '../summon-button/summon-button.jsx';
 import {default as Arena} from '../arena/arena.jsx';
 
+import {default as GameUtil} from '../../../utils/game';
+
 import {GameActions} from '../../../stores/game-store';
 
 // TODO this Action Area is really
@@ -26,14 +28,16 @@ export default React.createClass({
       }
 
       this.otherTimer = setTimeout(() => {
-        // display who won
-        // TODO ugh refeactor
-        var loses = newProps.myMonster.losesAgainst.indexOf(this.props.otherMonster.name) !== -1;
-        var wins = newProps.myMonster.winsAgainst.indexOf(this.props.otherMonster.name) !== -1;
+        // Display who won
+        let result = GameUtil.determineWinner(
+          newProps.myMonster,
+          newProps.otherMonster
+        );
+
         var a;
         var b;
 
-        if (loses) {
+        if (result === 'lose') {
           a = newProps.otherMonster.label;
           b = newProps.myMonster.label;
         } else {
@@ -43,7 +47,7 @@ export default React.createClass({
 
         var fightText = a + ' beats ' + b;
 
-        if (!wins && !loses) {
+        if (result === 'draw') {
           fightText = a + ' and ' + b + ' are in an eternal struggle';
         }
 

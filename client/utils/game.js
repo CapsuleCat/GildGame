@@ -14,7 +14,14 @@ export default {
     return monster;
   },
 
-  determineWinner(/* monsterA, monsterB */) {
-    // TODO
+  determineWinner(monsterA, monsterB) {
+    let result = 'lose';
+    if (monsterA.winsAgainst.indexOf(monsterB.name) !== -1) {
+      result = 'win';
+    } else if (monsterA.drawsAgainst.indexOf(monsterB.name) !== -1) {
+      result = 'draw';
+    }
+
+    return result;
   }
 };
