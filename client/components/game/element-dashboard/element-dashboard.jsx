@@ -8,7 +8,7 @@ export default React.createClass({
         <div className="game__dashboard">
           <div className="game__element-container">
             {this.props.elements.map((element, i) => {
-             return <Element
+              return <Element
                   key={i}
                   index={i}
                   label={element.label}
