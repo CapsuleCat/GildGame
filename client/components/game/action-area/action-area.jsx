@@ -5,6 +5,8 @@ import {default as SummonButton} from '../summon-button/summon-button.jsx';
 import {default as Arena} from '../arena/arena.jsx';
 import {default as Monster} from '../monster/monster.jsx';
 
+import {audio} from '../../../audio';
+
 import {default as GameUtil} from '../../../utils/game';
 
 import {GameActions, GameStore} from '../../../stores/game-store';
@@ -24,6 +26,7 @@ export default React.createClass({
 
   componentWillReceiveProps(newProps) {
     if (newProps.readyToShowMonsters) {
+      audio.summon.play();
       if (this.timer) {
         return;
       }

@@ -26,11 +26,14 @@ const LobbyStore = Reflux.createStore({
 
   onCreate(username, callback) {
     const id = Games.insert({
-      player1: username
+      player1: username,
+      lastBeacon: Number(new Date())
     });
 
     this._lobby.userName = username;
     this._lobby.gameId = id;
+
+    this._setupBeacon(1);
 
     callback(id);
 
@@ -53,6 +56,8 @@ const LobbyStore = Reflux.createStore({
     this._lobby.userName = username;
     this._lobby.otherUserName = game.player1;
     this._lobby.gameId = gameId;
+
+    this._setupBeacon(2);
 
     this.trigger(this.getInitialState());
   },
@@ -107,7 +112,10 @@ const LobbyStore = Reflux.createStore({
   _track() {
     Tracker.autorun(Meteor.bindEnvironment((/* computation */) => {
       let games = Games.find({
-        player2: null
+        player2: null,
+        cancelled: {
+          $ne: true
+        }
       }).fetch();
 
       this._lobbies = games;
@@ -138,6 +146,14 @@ const LobbyStore = Reflux.createStore({
       isInLobby: (state.gameId !== null),
       hasOtherPlayer: Boolean(state.otherUserName)
     };
+  },
+
+  _setupBeacon(playerId) {
+    let gameId = this._lobby.gameId;
+
+    window.setInterval(() => {
+      Meteor.call('beacon', gameId, playerId);
+    }, 500);
   }
 });
 
