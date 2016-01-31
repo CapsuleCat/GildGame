@@ -1,13 +1,13 @@
 import React from 'react';
 import Reflux from 'reflux';
 
-import {default as End} from '../components/game/end/end.jsx';
-
 import {SceneActions} from '../actions/scene-actions';
 
+import {default as End} from '../components/game/end/end.jsx';
 import {default as Lobby} from '../components/lobby/lobby/lobby.jsx';
+import {default as LostConnection} from '../components/status/lost-connection/lost-connection.jsx';
 
-var SceneStore = Reflux.createStore({
+const SceneStore = Reflux.createStore({
   listenables: [ SceneActions ],
 
   init() {
@@ -23,6 +23,10 @@ var SceneStore = Reflux.createStore({
 
   onHome() {
     this.transition(<Lobby />);
+  },
+
+  onLoseConnection() {
+    this.transition(<LostConnection />);
   },
 
   transition(scene) {
