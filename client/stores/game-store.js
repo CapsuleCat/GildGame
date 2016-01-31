@@ -58,6 +58,16 @@ const GameStore = Reflux.createStore({
     this._softReset();
   },
 
+  getMyMonster() {
+    var elements = this._pickedElements.map((element) => {
+        return element.name;
+    });
+    // determine monsters
+    return GameUtil.determineMonster(
+      elements
+    );
+  },
+
   onSetGame(gameId, playerId) {
     this._gameId = gameId;
     this._playerId = playerId;
