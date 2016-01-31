@@ -21,13 +21,13 @@ export default React.createClass({
           }
         },
         color: {
-          value: '#ffffff'
+          value: '#ccc'
         },
         shape: {
           type: 'circle',
           stroke: {
             width: 0,
-            color: '#000000'
+            color: '#ccc'
           },
           polygon: {
             nb_sides: 5
