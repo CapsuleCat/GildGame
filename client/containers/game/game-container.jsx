@@ -27,7 +27,11 @@ export default React.createClass({
 
           <ActionArea
               readyToSummon={this.state.game.readyToSummon}
-              readyToRoShamBo={this.state.game.readyToRoShamBo} />
+              readyToRoShamBo={this.state.game.readyToRoShamBo}
+              readyToShowMonsters={this.state.game.readyToShowMonsters}
+              myMonster={this.state.game.myMonster}
+              otherMonster={this.state.game.otherMonster} />
+
         </div>
         <ElementDashboard elements={this.state.game.elements} />
       </div>

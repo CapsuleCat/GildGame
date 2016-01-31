@@ -1,4 +1,4 @@
-/* global elements, Games */
+/* global elements, monsters, Games */
 import Reflux from 'reflux';
 
 import {default as Random} from '../utils/random';
@@ -20,6 +20,8 @@ const GameStore = Reflux.createStore({
     this._wins = 0;
     this._elements = [];
     this._pickedElements = [];
+    this._myMonster = null;
+    this._otherMonster = null;
 
     this._readyToRoShamBo = false;
     this._readyToShowMonsters = false;
@@ -79,7 +81,10 @@ const GameStore = Reflux.createStore({
         winCount: this._wins,
         elements: this._elements,
         pickedElements: this._pickedElements,
-        readyToRoShamBo: this._readyToRoShamBo
+        readyToRoShamBo: this._readyToRoShamBo,
+        readyToShowMonsters: this._readyToShowMonsters,
+        myMonster: this._myMonster,
+        otherMonster: this._otherMonster
       },
       this._calculatedState()
     );
@@ -108,6 +113,22 @@ const GameStore = Reflux.createStore({
            game !== null ) {
         if (game.player1Ready && game.player2Ready) {
           this._readyToShowMonsters = true;
+
+          // TODO determine monsters
+
+          this._myMonster = this._determineMonster(
+            game['player' + this._playerId + 'Elements']
+          );
+
+          let otherPlayerNumber = 2;
+
+          if (this._playerId === 2) {
+            otherPlayerNumber = 1;
+          }
+
+          this._otherMonster = this._determineMonster(
+            game['player' + otherPlayerNumber + 'Elements']
+          );
         }
 
         // Basically checking on the other player
@@ -115,6 +136,25 @@ const GameStore = Reflux.createStore({
 
       this.trigger(this.getInitialState());
     }));
+  },
+
+  _determineMonster(elements) {
+    for (var i = 0; i < monsters.length; i++) {
+      var allMatch = true;
+      for (var j = 0; j < elements.length; j++) {
+        if (monsters[i].ingredients.indexOf(elements[j]) === -1) {
+          allMatch = false;
+          break;
+        }
+      }
+
+      if (allMatch) {
+        // TODO remove
+        console.log(monsters[i]);
+
+        return Object.assign({}, monsters[i]);
+      }
+    }
   }
 });
 
