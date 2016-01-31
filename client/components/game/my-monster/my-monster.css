@@ -1,0 +1,7 @@
+.game__my-monster {
+  width: 50%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding-right: 40px;
+}
