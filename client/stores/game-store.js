@@ -1,6 +1,7 @@
 /* global elements, monsters, Games */
 import Reflux from 'reflux';
 
+import {default as loseConnection} from '../utils/lose-connection.jsx';
 import {default as Random} from '../utils/random';
 
 const TOTAL_ELEMENTS = 5;
@@ -111,11 +112,16 @@ const GameStore = Reflux.createStore({
 
       if ( typeof game !== 'undefined' &&
            game !== null ) {
+        // Check if the other player disconnected
+        this._checkIfDisconnected(game);
+
+
         if (game.player1Ready && game.player2Ready) {
           this._readyToShowMonsters = true;
 
-          // TODO determine monsters
+          // TODO don't redetermine monsters
 
+          // determine monsters
           this._myMonster = this._determineMonster(
             game['player' + this._playerId + 'Elements']
           );
@@ -154,6 +160,20 @@ const GameStore = Reflux.createStore({
 
         return Object.assign({}, monsters[i]);
       }
+    }
+  },
+
+  _checkIfDisconnected(game) {
+    let playerId = this._playerId;
+    let otherPlayerId = 1;
+
+    if (playerId === 1) {
+      otherPlayerId = 2;
+    }
+
+    let time = Number(new Date()) - 5000;
+    if (game['lastBeacon' + otherPlayerId] <= time) {
+      loseConnection();
     }
   }
 });
