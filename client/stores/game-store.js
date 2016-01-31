@@ -124,17 +124,11 @@ const GameStore = Reflux.createStore({
     // If someone reached three, end
     if (this._wins >= 3 || this._losses >= 3) {
       // end
-<<<<<<< HEAD
       var result = 'won';
       audio.win.play();
       if (this._losses >= 3) {
         audio.lose.play();
         result = 'lost';
-=======
-      var resultText = 'won';
-      if (this._losses >= 3) {
-        resultText = 'lost';
->>>>>>> 5f11ee6fe84882b3f2e6d41121d5ef2df3d22dd3
       }
 
       SceneActions.end(resultText);
