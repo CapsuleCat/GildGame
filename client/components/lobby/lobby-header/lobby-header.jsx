@@ -36,6 +36,7 @@ export default React.createClass({
   render() {
     if (this.givenName == null) {
       this.givenName = generateName();
+      LobbyActions.updateUserName(this.givenName);
     }
 
     return (
