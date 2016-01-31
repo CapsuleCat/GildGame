@@ -6,6 +6,8 @@ import {SceneActions} from '../actions/scene-actions';
 import {default as GameUtil} from '../utils/game';
 import {default as Random} from '../utils/random';
 
+import {audio} from '../audio';
+
 const TOTAL_ELEMENTS = 5;
 
 const GameActions = Reflux.createActions([
@@ -124,7 +126,10 @@ const GameStore = Reflux.createStore({
       // end
       var resultText = 'won';
       if (this._losses >= 3) {
+        audio.lose.play();
         resultText = 'lost';
+      } else {
+        audio.win.play();
       }
 
       SceneActions.end(resultText);
