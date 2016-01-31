@@ -1,7 +1,8 @@
 import Reflux from 'reflux';
 
 var SceneActions = Reflux.createActions([
-  'transition'
+  'transition',
+  'end'
 ]);
 
 export default {SceneActions};
