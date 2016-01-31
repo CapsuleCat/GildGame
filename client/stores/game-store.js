@@ -179,10 +179,15 @@ const GameStore = Reflux.createStore({
 
       if ( typeof game !== 'undefined' &&
            game !== null ) {
+        // Check if the other player disconnected
+        this._checkIfDisconnected(game);
+
+
         if (game.player1Ready && game.player2Ready) {
           this._readyToShowMonsters = true;
 
-          // determine monsters
+          // TODO don't redetermine monsters
+
           this._myMonster = GameUtil.determineMonster(
             game['player' + this._playerId + 'Elements']
           );
@@ -203,6 +208,22 @@ const GameStore = Reflux.createStore({
 
       this.trigger(this.getInitialState());
     }));
+  },
+
+  _checkIfDisconnected(game) {
+    let playerId = this._playerId;
+    let otherPlayerId = 1;
+
+    if (playerId === 1) {
+      otherPlayerId = 2;
+    }
+
+    let time = Number(new Date()) - 10000;
+    if (this._gameId !== null &&
+        game['lastBeacon' + otherPlayerId] <= time) {
+      this.init();
+      SceneActions.loseConnection();
+    }
   }
 });
 
