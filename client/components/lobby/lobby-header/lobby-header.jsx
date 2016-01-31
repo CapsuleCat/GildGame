@@ -34,7 +34,7 @@ export default React.createClass({
   },
 
   render() {
-    if (this.givenName == null) {
+    if (typeof this.givenName === 'undefined' || this.givenName === null) {
       this.givenName = generateName();
       LobbyActions.updateUserName(this.givenName);
     }
