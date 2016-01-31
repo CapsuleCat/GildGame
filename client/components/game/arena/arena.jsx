@@ -8,11 +8,11 @@ export default React.createClass({
     return (
       <div className="game__arena">
         <MyMonster
-          imageURL={this.props.myMonster.imageURL}
-          key={this.props.myMonster.monsterId}/>
+          label={this.props.myMonster.label}
+          image={this.props.myMonster.image} />
         <EnemyMonster
-          imageURL={this.props.enemyMonster.imageURL}
-          key={this.props.enemyMonster.monsterId}/>
+          label={this.props.otherMonster.label}
+          image={this.props.otherMonster.image} />
       </div>
     );
   }
