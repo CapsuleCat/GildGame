@@ -1,8 +1,9 @@
-/* global elements, monsters, Games */
+/* global elements, Games */
 import Reflux from 'reflux';
 
 import {SceneActions} from '../actions/scene-actions';
 
+import {default as GameUtil} from '../utils/game';
 import {default as Random} from '../utils/random';
 
 import {audio} from '../audio';
@@ -106,29 +107,37 @@ const GameStore = Reflux.createStore({
 
   onEndRound() {
     // Determine if we won
-    var loses = this._myMonster.losesAgainst.indexOf(this._otherMonster.name) !== -1;
-    var wins = this._myMonster.winsAgainst.indexOf(this._otherMonster.name) !== -1;
+    let result = GameUtil.determineWinner(
+      this._myMonster,
+      this._otherMonster
+    );
 
     // Increment our wins
-    if (wins) {
+    if (result === 'win') {
       this._wins++;
     }
     // Increment our loses
-    if (loses) {
+    if (result === 'lose') {
       this._losses++;
     }
 
     // If someone reached three, end
     if (this._wins >= 3 || this._losses >= 3) {
       // end
+<<<<<<< HEAD
       var result = 'won';
       audio.win.play();
       if (this._losses >= 3) {
         audio.lose.play();
         result = 'lost';
+=======
+      var resultText = 'won';
+      if (this._losses >= 3) {
+        resultText = 'lost';
+>>>>>>> 5f11ee6fe84882b3f2e6d41121d5ef2df3d22dd3
       }
 
-      SceneActions.end(result);
+      SceneActions.end(resultText);
       this.init();
     } else {
       // reset
@@ -179,7 +188,7 @@ const GameStore = Reflux.createStore({
           this._readyToShowMonsters = true;
 
           // determine monsters
-          this._myMonster = this._determineMonster(
+          this._myMonster = GameUtil.determineMonster(
             game['player' + this._playerId + 'Elements']
           );
 
@@ -189,7 +198,7 @@ const GameStore = Reflux.createStore({
             otherPlayerNumber = 1;
           }
 
-          this._otherMonster = this._determineMonster(
+          this._otherMonster = GameUtil.determineMonster(
             game['player' + otherPlayerNumber + 'Elements']
           );
         }
@@ -199,22 +208,6 @@ const GameStore = Reflux.createStore({
 
       this.trigger(this.getInitialState());
     }));
-  },
-
-  _determineMonster(elements) {
-    for (var i = 0; i < monsters.length; i++) {
-      var allMatch = true;
-      for (var j = 0; j < elements.length; j++) {
-        if (monsters[i].ingredients.indexOf(elements[j]) === -1) {
-          allMatch = false;
-          break;
-        }
-      }
-
-      if (allMatch) {
-        return Object.assign({}, monsters[i]);
-      }
-    }
   }
 });
 
