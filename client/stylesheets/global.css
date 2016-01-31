@@ -21,6 +21,15 @@ body {
   margin-top: 20px;
   position:relative;
 }
+/*mobile view container*/
+.view-container-mobile {
+  background-color: #283239;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+}
 .gild-btn {
   /*float:right;*/
   border: none;

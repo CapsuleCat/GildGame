@@ -1,8 +1,9 @@
 .game__dashboard {
   background-color: #181F20;
-  height: 25%;
+  height: 150px;
   position: absolute;
   bottom: 0;
+  left: 0;
   -moz-box-shadow:    inset 0 0 10px #000000;
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow:         inset 0 0 10px #000000;

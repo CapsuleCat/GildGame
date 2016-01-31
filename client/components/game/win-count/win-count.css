@@ -1,4 +1,7 @@
 .game__win-cnt {
   float:right;
   font-size:1.5em;
+  margin-left:40px;
+  margin-right:40px;
+  margin-top:20px;
 }
