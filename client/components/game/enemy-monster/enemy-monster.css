@@ -1,15 +1,7 @@
-.game__enemy-monster {
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: "FlipH";
-}
 .game__enemy {
   width: 50%;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  padding-left: 40px;
+  /*padding-left: 40px;*/
 }
