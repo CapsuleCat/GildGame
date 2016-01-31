@@ -128,8 +128,7 @@ const GameStore = Reflux.createStore({
       if (this._losses >= 3) {
         audio.lose.play();
         resultText = 'lost';
-      }
-      else {
+      } else {
         audio.win.play();
       }
 
