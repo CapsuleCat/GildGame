@@ -25,10 +25,11 @@ export default React.createClass({
 
   componentWillReceiveProps(newProps) {
     if (newProps.readyToShowMonsters) {
-      audio.summon.play();
       if (this.timer) {
         return;
       }
+
+      audio.summon.play();
 
       this.otherTimer = setTimeout(() => {
         // Display who won
