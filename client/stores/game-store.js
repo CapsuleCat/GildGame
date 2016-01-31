@@ -213,7 +213,7 @@ const GameStore = Reflux.createStore({
       otherPlayerId = 2;
     }
 
-    let time = Number(new Date()) - 5000;
+    let time = Number(new Date()) - 10000;
     if (this._gameId !== null &&
         game['lastBeacon' + otherPlayerId] <= time) {
       this.init();
