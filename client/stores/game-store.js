@@ -1,8 +1,9 @@
-/* global elements, monsters, Games */
+/* global elements, Games */
 import Reflux from 'reflux';
 
 import {SceneActions} from '../actions/scene-actions';
 
+import {default as GameUtil} from '../utils/game';
 import {default as Random} from '../utils/random';
 
 const TOTAL_ELEMENTS = 5;
@@ -175,7 +176,7 @@ const GameStore = Reflux.createStore({
           this._readyToShowMonsters = true;
 
           // determine monsters
-          this._myMonster = this._determineMonster(
+          this._myMonster = GameUtil.determineMonster(
             game['player' + this._playerId + 'Elements']
           );
 
@@ -195,22 +196,6 @@ const GameStore = Reflux.createStore({
 
       this.trigger(this.getInitialState());
     }));
-  },
-
-  _determineMonster(elements) {
-    for (var i = 0; i < monsters.length; i++) {
-      var allMatch = true;
-      for (var j = 0; j < elements.length; j++) {
-        if (monsters[i].ingredients.indexOf(elements[j]) === -1) {
-          allMatch = false;
-          break;
-        }
-      }
-
-      if (allMatch) {
-        return Object.assign({}, monsters[i]);
-      }
-    }
   }
 });
 

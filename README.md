@@ -20,7 +20,7 @@ GILD is a 2 player game. One person creates a Room, and the other player joins i
 The team that put this awesome game together in 48 hours was:
 
 - Gustavo
-- Ivan
+- [Ivan](https://github.com/idmontie)
 - Lauren
 - Daniela
 
