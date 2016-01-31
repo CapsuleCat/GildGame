@@ -7,3 +7,7 @@
 .game__monster-preview .monster {
   margin-top: 10%;
 }
+.game__fight-text {
+  position: absolute;
+  bottom: 170px;
+}
