@@ -1,6 +1,5 @@
 import React from 'react';
-
-// TODO will need to be able to add elements
+// TODO will need to be able to add elements//
 export default React.createClass({
   render() {
     return (
