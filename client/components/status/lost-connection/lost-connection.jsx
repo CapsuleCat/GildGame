@@ -1,10 +1,20 @@
 import React from 'react';
 
+import {SceneActions} from '../../../actions/scene-actions';
+
 export default React.createClass({
+  handleClick(e) {
+    e.preventDefault();
+
+    SceneActions.home();
+  },
+
   render() {
     return (
       <div>
-        Lost Connection to other player
+        <div>Lost Connection to other player</div>
+
+        <button onClick={this.handleClick}>Okay :(</button>
       </div>
     );
   }

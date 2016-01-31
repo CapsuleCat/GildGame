@@ -214,7 +214,9 @@ const GameStore = Reflux.createStore({
     }
 
     let time = Number(new Date()) - 5000;
-    if (game['lastBeacon' + otherPlayerId] <= time) {
+    if (this._gameId !== null &&
+        game['lastBeacon' + otherPlayerId] <= time) {
+      this.init();
       SceneActions.loseConnection();
     }
   }
