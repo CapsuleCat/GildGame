@@ -7,9 +7,13 @@ import {GameActions} from '../../../stores/game-store';
 import {SceneActions} from '../../../actions/scene-actions';
 import {LobbyActions} from '../../../stores/lobby-store';
 
+import {audio} from '../../../audio';
+
 export default React.createClass({
   handleClick(e) {
     e.preventDefault();
+
+    audio.button.play();
 
     const username = this.refs.username.value;
 
