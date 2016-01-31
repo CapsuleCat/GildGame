@@ -60,7 +60,7 @@ const GameStore = Reflux.createStore({
 
   getMyMonster() {
     var elements = this._pickedElements.map((element) => {
-        return element.name;
+      return element.name;
     });
     // determine monsters
     return GameUtil.determineMonster(
