@@ -17,6 +17,10 @@ describe('game utilities', () => {
       {
         ingredients: [ 'BasilPetal', 'BasilPetal' ],
         expectedMonster: 'Basil'
+      },
+      {
+        ingredients: [ 'EyeOfEnemy', 'BasilPetal' ],
+        expectedMonster: 'Fairy'
       }
     ];
 
